@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using HomeBudgetCalculator.Infrastructure.EntityFramework.Interface;
+using HomeBudgetCalculator.Infrastructure.EntityFramework.Interfaces;
 using System.Reflection;
 
 namespace HomeBudgetCalculator.Infrastructure.IoC.Modules

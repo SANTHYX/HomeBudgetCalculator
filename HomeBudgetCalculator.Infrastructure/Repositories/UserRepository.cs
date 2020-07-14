@@ -3,6 +3,7 @@ using HomeBudgetCalculator.Infrastructure.EntityFramework;
 using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Repositories

@@ -1,6 +1,7 @@
 ﻿using HomeBudgetCalculator.Core.Domains;
-using HomeBudgetCalculator.Infrastructure.EntityFramework.Interface;
+using HomeBudgetCalculator.Infrastructure.EntityFramework.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Repositories.Interfaces

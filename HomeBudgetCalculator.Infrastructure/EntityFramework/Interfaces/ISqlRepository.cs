@@ -1,4 +1,4 @@
-﻿namespace HomeBudgetCalculator.Infrastructure.EntityFramework.Interface
+﻿namespace HomeBudgetCalculator.Infrastructure.EntityFramework.Interfaces
 {
     /*MARKER INTERFACE*/
     public interface ISqlRepository

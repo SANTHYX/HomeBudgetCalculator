@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using HomeBudgetCalculator.Infrastructure.Commands.Interface;
+using HomeBudgetCalculator.Infrastructure.Commands.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
 using System;
 using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-﻿using HomeBudgetCalculator.Infrastructure.Commands.Interface;
+﻿using HomeBudgetCalculator.Infrastructure.Commands.Interfaces;
 
 namespace HomeBudgetCalculator.Infrastructure.Commands.UserCommands
 {

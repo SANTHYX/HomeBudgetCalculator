@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HomeBudgetCalculator.Infrastructure.Commands.Interface
+namespace HomeBudgetCalculator.Infrastructure.Commands.Interfaces
 {
     /*MARKER INTERFACE*/
     public interface ICommand

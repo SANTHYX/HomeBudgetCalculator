@@ -1,4 +1,4 @@
-﻿using HomeBudgetCalculator.Infrastructure.Commands.Interface;
+﻿using HomeBudgetCalculator.Infrastructure.Commands.Interfaces;
 using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Handlers.Interfaces
