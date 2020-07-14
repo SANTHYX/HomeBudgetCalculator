@@ -2,7 +2,7 @@
 using HomeBudgetCalculator.Core.Domains;
 using HomeBudgetCalculator.Infrastructure.DTO;
 
-namespace HomeBudgetCalculator.Infrastructure.MapperCfg
+namespace HomeBudgetCalculator.Infrastructure.Mapper
 {
     public class AutoMapperProfile : Profile
     {

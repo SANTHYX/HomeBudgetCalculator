@@ -8,9 +8,9 @@ namespace HomeBudgetCalculator.Infrastructure.IoC.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var asembly = typeof(ServiceContainer).GetTypeInfo().Assembly;
+            var assembly = typeof(ServiceContainer).GetTypeInfo().Assembly;
 
-            builder.RegisterAssemblyTypes(asembly).Where(x => x.IsAssignableTo<IService>())
+            builder.RegisterAssemblyTypes(assembly).Where(x => x.IsAssignableTo<IService>())
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }

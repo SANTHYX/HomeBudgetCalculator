@@ -8,9 +8,9 @@ namespace HomeBudgetCalculator.Infrastructure.IoC.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var asembly = typeof(SqlContainer).GetTypeInfo().Assembly;
+            var assembly = typeof(SqlContainer).GetTypeInfo().Assembly;
 
-            builder.RegisterAssemblyTypes(asembly).Where(x => x.IsAssignableTo<ISqlRepository>())
+            builder.RegisterAssemblyTypes(assembly).Where(x => x.IsAssignableTo<ISqlRepository>())
                 .AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
