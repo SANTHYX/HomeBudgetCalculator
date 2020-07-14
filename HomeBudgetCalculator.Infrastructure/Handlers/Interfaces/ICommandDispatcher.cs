@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Handlers.Interfaces
 {
-    public interface ICommandHandler<T> where T : ICommand
+    public interface ICommandDispatcher
     {
-        Task HandleAsync(T command);
+        Task DispatchAsync<T>(T command) where T : ICommand;
     }
 }

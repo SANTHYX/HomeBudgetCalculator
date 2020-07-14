@@ -9,6 +9,9 @@ namespace HomeBudgetCalculator.Infrastructure.Service.Interfaces
     public interface IUserService : IService
     {
         Task<IEnumerable<UserDTO>> BrowseAsync();
+
         Task<UserDTO> GetAsync(string login);
+
+        Task RegisterAsync();
     }
 }
