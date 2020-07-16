@@ -2,41 +2,41 @@
 using HomeBudgetCalculator.Infrastructure.EntityFramework;
 using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class IncomeRepository : IIncomeRepository
     {
         private readonly DataContext _context;
 
-        public UserRepository(DataContext context)
+        public IncomeRepository(DataContext context)
         {
             _context = context;
         }
-        public async Task AddAsync(User user)
+        public async Task AddAsync(Income expense)
         {
-            await _context.Users.AddAsync(user);
+            await _context.Incomes.AddAsync(expense);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(User user)
+        public async Task DeleteAsync(Income expense)
         {
-            _context.Users.Remove(user);
+            _context.Incomes.Remove(expense);
             await _context.SaveChangesAsync();
         }
 
-        public IQueryable<User> GetAllAsync()
-            => _context.Users.AsQueryable();
+        public IQueryable<Income> GetAllAsync()
+            => _context.Incomes;
 
-        public User GetAsync(string login)
-            => _context.Users.FirstOrDefault(x => x.Login == login);
+        public async Task<Income> GetAsync(Guid id)
+            => await _context.Incomes.FirstOrDefaultAsync(x => x.Id == id);
 
-        public async Task UpdateAsync(User user)
+        public async Task UpdateAsync(Income expense)
         {
-            _context.Users.Update(user);
+            _context.Incomes.Update(expense);
             await _context.SaveChangesAsync();
         }
     }

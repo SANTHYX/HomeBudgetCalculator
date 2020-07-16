@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using HomeBudgetCalculator.Core.Domains;
 using HomeBudgetCalculator.Infrastructure.DTO;
+using System.IO.Compression;
+using System.Security.Cryptography.X509Certificates;
 
 namespace HomeBudgetCalculator.Infrastructure.Mapper
 {
@@ -8,7 +10,10 @@ namespace HomeBudgetCalculator.Infrastructure.Mapper
     {
         public AutoMapperProfile() 
         {
-            CreateMap<User, UserDTO>();
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Budget, BudgetDTO>().ReverseMap();
+            CreateMap<Income, IncomeDTO>().ReverseMap();
+            CreateMap<Expense, ExpenseDTO>().ReverseMap();
         }
     }
 }

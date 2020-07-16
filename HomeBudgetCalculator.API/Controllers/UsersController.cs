@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using HomeBudgetCalculator.Infrastructure.Commands.UserCommands;
+using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeBudgetCalculator.Infrastructure.Controllers
@@ -13,45 +11,53 @@ namespace HomeBudgetCalculator.Infrastructure.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-
-        public UsersController(IUserService userService)
+        private readonly ICommandDispatcher _commandDispatcher;
+        public UsersController(IUserService userService, ICommandDispatcher commandDispatcher)
         {
             _userService = userService;
+            _commandDispatcher = commandDispatcher;
         }
-        // GET: api/Users
+        // GET: api/Users/GetAll/
         [HttpGet("GetAll")]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            var users = await _userService.BrowseAsync();
+            var users = _userService.BrowseUsersAsync();
 
             return Ok(users);
         }
 
-        // GET: api/Users/5
+        // GET: api/Users/{login}
         [HttpGet("{login}", Name = "Get")]
-        public async Task<IActionResult> Get(string login)
+        public IActionResult Get(string login)
         {
-            var user = await _userService.GetAsync(login);
+            var user = _userService.GetUserAsync(login);
 
             return Ok(user);
         }
 
-        // POST: api/Users
+        // POST: api/Users/
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] CreateUser command)
         {
+            await _commandDispatcher.DispatchAsync(command);
+
+            return Ok();
         }
 
-        // PUT: api/Users/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT: api/Users/
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateUser command)
         {
+            await _commandDispatcher.DispatchAsync(command);
+
+            return Ok();
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE: api/Users/
+        [HttpDelete]
+        public async Task<IActionResult> Delete()
         {
+            return Ok();
         }
     }
 }

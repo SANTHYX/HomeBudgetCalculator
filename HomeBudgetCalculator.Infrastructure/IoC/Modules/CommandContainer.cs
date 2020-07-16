@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using HomeBudgetCalculator.Infrastructure.Commands.Interfaces;
+using HomeBudgetCalculator.Infrastructure.Commands;
 using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
 using System.Reflection;
 
@@ -14,7 +14,7 @@ namespace HomeBudgetCalculator.Infrastructure.IoC.Modules
             builder.RegisterAssemblyTypes(assembly).AsClosedTypesOf(typeof(ICommandHandler<>))
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<ICommandDispatcher>().As<ICommandDispatcher>()
+            builder.RegisterType<CommandDispatcher>().As<ICommandDispatcher>()
                 .InstancePerLifetimeScope();
         }
     }

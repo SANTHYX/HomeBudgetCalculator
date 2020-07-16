@@ -17,6 +17,7 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public string Email { get; protected set; }
 
+        public Budget Budget { get; protected set; }
 
         public User(string firstName, string lastName, string login, string password, string email)
         {
@@ -27,7 +28,6 @@ namespace HomeBudgetCalculator.Core.Domains
             SetPassword(password);
             SetEmail(email);
         }
-
 
         public void SetFirstName(string firstName)
         {
@@ -109,6 +109,11 @@ namespace HomeBudgetCalculator.Core.Domains
             }
 
             Email = email;
+        }
+
+        public void SetBudget(Budget budget)
+        {
+            Budget = budget;
         }
     }
 }

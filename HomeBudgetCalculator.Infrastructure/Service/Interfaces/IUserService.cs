@@ -1,18 +1,17 @@
 ﻿using HomeBudgetCalculator.Infrastructure.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Service.Interfaces
 {
     public interface IUserService : IService
     {
-        Task <IEnumerable<UserDTO>> BrowseAsync();
+        IEnumerable<UserDTO> BrowseUsersAsync();
 
-        Task<UserDTO> GetAsync(string login);
+        UserDTO GetUserAsync(string login);
 
-        Task RegisterAsync(string firstName, string lastName, string login, string password, string email);
+        Task RegisterUserAsync(string firstName, string lastName, string login, string password, string email);
+
+        Task UpdateUserAsync(string login, string password, string email);
     }
 }

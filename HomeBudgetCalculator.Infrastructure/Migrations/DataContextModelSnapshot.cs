@@ -4,6 +4,7 @@ using HomeBudgetCalculator.Infrastructure.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeBudgetCalculator.Infrastructure.Migrations
 {
@@ -17,6 +18,32 @@ namespace HomeBudgetCalculator.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("HomeBudgetCalculator.Core.Domains.Budget", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("BudgetAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalExpense")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalIncome")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Budgets");
+                });
 
             modelBuilder.Entity("HomeBudgetCalculator.Core.Domains.User", b =>
                 {
@@ -42,6 +69,15 @@ namespace HomeBudgetCalculator.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("HomeBudgetCalculator.Core.Domains.Budget", b =>
+                {
+                    b.HasOne("HomeBudgetCalculator.Core.Domains.User", "User")
+                        .WithOne("Budget")
+                        .HasForeignKey("HomeBudgetCalculator.Core.Domains.Budget", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
