@@ -3,7 +3,7 @@ using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
 using System.Threading.Tasks;
 
-namespace HomeBudgetCalculator.Infrastructure.Handlers.Budget
+namespace HomeBudgetCalculator.Infrastructure.Handlers.Budgets
 {
     public class UpdateBudgetHandler : ICommandHandler<UpdateBudget>
     {

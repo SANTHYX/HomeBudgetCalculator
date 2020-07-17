@@ -1,4 +1,6 @@
-﻿using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
+﻿using HomeBudgetCalculator.Core.Domains;
+using HomeBudgetCalculator.Infrastructure.Extensions;
+using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
 using System;
 using System.Threading.Tasks;
@@ -16,19 +18,39 @@ namespace HomeBudgetCalculator.Infrastructure.Service
             _budgetRepository = budgetRepository;
         }
 
-        public Task AddExpenseAsync(Guid budgetId, string title, decimal value, DateTime date)
+        public async Task AddExpenseAsync(Guid budgetId, string title, decimal value, DateTime date)
         {
-            throw new NotImplementedException();
+            if (!_budgetRepository.IsBudgetExist(budgetId))
+            {
+                throw new Exception("Cannot relate Income with Budget that doesn't exist");
+            }
+
+            await _expenseRepository.AddAsync(new Expense(title, value, date,budgetId));
         }
 
-        public Task DeleteExpenseAsync(Guid id)
+        public async Task DeleteExpenseAsync(Guid id)
         {
-            throw new NotImplementedException();
+            if (!_expenseRepository.IsExpenseExist(id))
+            {
+                throw new Exception("Income object not exist");
+            }
+
+            var expense = await _expenseRepository.GetAsync(id);
+            await _expenseRepository.DeleteAsync(expense);
         }
 
-        public Task UpdateExpenseAsync(Guid id, string title, decimal value, DateTime date)
+        public async Task UpdateExpenseAsync(Guid id, string title, decimal value, DateTime date)
         {
-            throw new NotImplementedException();
+            if (!_expenseRepository.IsExpenseExist(id))
+            {
+                throw new Exception("Income object not exist");
+            }
+
+            var expense = await _expenseRepository.GetAsync(id);
+            expense.SetTitle(title);
+            expense.SetValue(value);
+            expense.SetDate(date);
+            await _expenseRepository.UpdateAsync(expense);
         }
     }
 }
