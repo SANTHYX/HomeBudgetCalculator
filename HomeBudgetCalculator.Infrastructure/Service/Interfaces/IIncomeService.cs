@@ -1,17 +1,16 @@
-﻿using HomeBudgetCalculator.Infrastructure.DTO;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Service.Interfaces
 {
     public interface IIncomeService : IService
     {
-        Task AddIncomeAsync();
+        Task AddIncomeAsync(Guid budgetId, string title, decimal value, 
+            DateTime date);
 
-        Task UpdateIncomeAsync();
+        Task UpdateIncomeAsync(Guid id ,string title, decimal value, 
+            DateTime date);
 
-        Task DeleteIncomeAsync();
+        Task DeleteIncomeAsync(Guid id);
     }
 }

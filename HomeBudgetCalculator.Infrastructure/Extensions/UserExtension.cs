@@ -7,9 +7,9 @@ namespace HomeBudgetCalculator.Infrastructure.Extensions
 {
     public static class UserExtension
     {
-        public static bool IsUserExistAsync(this IUserRepository userRepository, string login)
+        public static bool IsUserExist(this IUserRepository userRepository, string login)
         {
-            var user =  userRepository.GetAllAsync().Where(x => x.Login == login);
+            var user =  userRepository.GetAll().Where(x => x.Login == login);
             var userExist = user.Any();
 
             if (userExist)

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Extensions
 {
-    public static class BudgetExtensions
+    public static class BudgetExtension
     {
-        public static bool IsBudgetExistAsync(this IBudgetRepository budgetRepository, Guid id)
+        public static bool IsBudgetExist(this IBudgetRepository budgetRepository, Guid id)
         {
-            var budget = budgetRepository.GetAllAsync();
+            var budget = budgetRepository.GetAll();
             var budgetExist = budget.Where(x => x.Id == id).Any();
 
             if (budgetExist)

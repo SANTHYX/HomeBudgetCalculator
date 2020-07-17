@@ -15,10 +15,8 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories.Interfaces
 
         Task DeleteAsync(Budget budget);
 
-        Budget GetAsync(Guid id);
+        Task<Budget> GetAsync(Guid id);
 
-        Task<Budget> GetByUserIdAsync(Guid userId);
-
-        IQueryable<Budget> GetAllAsync();
+        IQueryable<Budget> GetAll();
     }
 }

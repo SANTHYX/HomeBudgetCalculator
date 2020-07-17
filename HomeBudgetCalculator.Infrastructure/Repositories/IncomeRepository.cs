@@ -28,7 +28,7 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Income> GetAllAsync()
+        public IQueryable<Income> GetAll()
             => _context.Incomes;
 
         public async Task<Income> GetAsync(Guid id)

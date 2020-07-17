@@ -110,10 +110,5 @@ namespace HomeBudgetCalculator.Core.Domains
 
             Email = email;
         }
-
-        public void SetBudget(Budget budget)
-        {
-            Budget = budget;
-        }
     }
 }

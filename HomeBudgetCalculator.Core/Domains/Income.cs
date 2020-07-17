@@ -12,12 +12,17 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public DateTime Date { get; protected set; }
 
-        public Income(string title, decimal value, DateTime date)
+        public Guid BudgetId { get; protected set; }
+
+        public Budget Budget { get; protected set; }
+
+        public Income(string title, decimal value, DateTime date, Guid budgetId)
         {
             Id = Guid.NewGuid();
             SetTitle(title);
             SetValue(value);
             SetDate(date);
+            SetBudgetId(budgetId);
         }
 
         public void SetTitle(string title)
@@ -60,6 +65,16 @@ namespace HomeBudgetCalculator.Core.Domains
             }
 
             Date = date;
+        }
+
+        public void SetBudgetId(Guid budgetId)
+        {
+            if (budgetId == Guid.Empty)
+            {
+                throw new Exception("BudgetId cannot be empty if u want to relate entities: Budget <> Expense");
+            }
+
+            BudgetId = budgetId;
         }
     }
 }

@@ -20,24 +20,24 @@ namespace HomeBudgetCalculator.Infrastructure.Service
         }
         public async Task CreateBudgetAsync(string login)
         {
-            if(!_userRepository.IsUserExistAsync(login))
+            if(!_userRepository.IsUserExist(login))
             {
                 throw new Exception("Cannot relate budget with user that doesn't exist");
             }
 
-            var user = _userRepository.GetAsync(login);
+            var user = await _userRepository.GetAsync(login);
             await _budgetRepository.AddAsync(new Budget(user.Id));
             await _userRepository.UpdateAsync(user);
         }
 
         public async Task UpdateBudgetAsync(Guid id, decimal budgetAmount, decimal totalIncome, decimal totalExpense)
         {
-            if (!_budgetRepository.IsBudgetExistAsync(id))
+            if (!_budgetRepository.IsBudgetExist(id))
             {
-                throw new Exception("Budget not exist");
+                throw new Exception("Budget object not exist");
             }
 
-            var budget = _budgetRepository.GetAsync(id);
+            var budget = await _budgetRepository.GetAsync(id);
             budget.SetBudgetAmount(budgetAmount);
             budget.SetTotalIncome(totalIncome);
             budget.SetTotalExpense(totalExpense);

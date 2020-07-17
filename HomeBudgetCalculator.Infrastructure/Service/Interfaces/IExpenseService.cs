@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Service.Interfaces
 {
     public interface IExpenseService : IService
     {
-        Task DeleteExpenseAsync();
+        Task AddExpenseAsync(Guid budgetId, string title, decimal value, DateTime date);
 
-        Task AddExpenseAsync();
+        Task DeleteExpenseAsync(Guid id);
 
-        Task UpdateExpenseAsync();
+        Task UpdateExpenseAsync(Guid id ,string title, decimal value,
+            DateTime date);
     }
 }

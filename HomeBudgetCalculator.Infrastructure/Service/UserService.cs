@@ -26,14 +26,14 @@ namespace HomeBudgetCalculator.Infrastructure.Service
 
         public IEnumerable<UserDTO> BrowseUsersAsync()
         {
-            var users = _userRepository.GetAllAsync();
+            var users = _userRepository.GetAll();
 
             return _mapper.ProjectTo<UserDTO>(users).ToList();
         }
 
-        public UserDTO GetUserAsync(string login)
+        public async Task<UserDTO> GetUserAsync(string login)
         {
-            var user = _userRepository.GetAsync(login);
+            var user = await _userRepository.GetAsync(login);
 
             return _mapper.Map<UserDTO>(user);
         }
@@ -41,7 +41,7 @@ namespace HomeBudgetCalculator.Infrastructure.Service
         public async Task RegisterUserAsync(string firstName, string lastName, string login, string password,
             string email)
         {
-            if (_userRepository.IsUserExistAsync(login))
+            if (_userRepository.IsUserExist(login))
             {
                 throw new Exception($"User with this login: {login} already exist");
             }
@@ -51,12 +51,12 @@ namespace HomeBudgetCalculator.Infrastructure.Service
         /*UpdateUserAsync wymaga przemyślenia*/
         public async Task UpdateUserAsync(string login, string password, string email)
         {
-            if (!_userRepository.IsUserExistAsync(login))
+            if (!_userRepository.IsUserExist(login))
             {
                 throw new Exception($"User with login: {login} don't exist");
             }
 
-            var user = _userRepository.GetAsync(login);
+            var user = await _userRepository.GetAsync(login);
             user.SetLogin(login);
             user.SetPassword(password);
             user.SetEmail(email);

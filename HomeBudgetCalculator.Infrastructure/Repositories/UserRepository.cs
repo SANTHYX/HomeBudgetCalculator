@@ -2,7 +2,6 @@
 using HomeBudgetCalculator.Infrastructure.EntityFramework;
 using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,11 +27,11 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public IQueryable<User> GetAllAsync()
+        public IQueryable<User> GetAll()
             => _context.Users.AsQueryable();
 
-        public User GetAsync(string login)
-            => _context.Users.FirstOrDefault(x => x.Login == login);
+        public async Task<User> GetAsync(string login)
+            => await _context.Users.Include(x => x.Budget).FirstOrDefaultAsync(z => z.Login == login);
 
         public async Task UpdateAsync(User user)
         {

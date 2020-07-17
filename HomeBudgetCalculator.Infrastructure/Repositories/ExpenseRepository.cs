@@ -31,8 +31,8 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories
         public IQueryable<Expense> GetAllAsync()
             => _context.Expenses.AsQueryable();
 
-        public Expense GetAsync(Guid id)
-            => _context.Expenses.AsQueryable().FirstOrDefault(x => x.Id == id);
+        public async Task<Expense> GetAsync(Guid id)
+            => await _context.Expenses.FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task UpdateAsync(Expense expense)
         {

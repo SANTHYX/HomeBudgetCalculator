@@ -1,12 +1,8 @@
-﻿using AutoMapper;
-using HomeBudgetCalculator.Infrastructure.DTO;
+﻿using HomeBudgetCalculator.Core.Domains;
+using HomeBudgetCalculator.Infrastructure.Extensions;
 using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Service
@@ -14,26 +10,47 @@ namespace HomeBudgetCalculator.Infrastructure.Service
     public class IncomeService : IIncomeService
     {
         private readonly IIncomeRepository _incomeRepository;
-        private readonly IMapper _mapper;
+        private readonly IBudgetRepository _budgetRepository;
 
-        public IncomeService(IIncomeRepository incomeRepository, IMapper mapper)
+        public IncomeService(IIncomeRepository incomeRepository, IBudgetRepository budgetRepository)
         {
             _incomeRepository = incomeRepository;
-            _mapper = mapper;
-        }
-        public Task AddIncomeAsync()
-        {
-            throw new NotImplementedException();
+            _budgetRepository = budgetRepository;
         }
 
-        public Task DeleteIncomeAsync()
+        public async Task AddIncomeAsync(Guid budgetId, string title, decimal value, DateTime date)
         {
-            throw new NotImplementedException();
+            if (!_budgetRepository.IsBudgetExist(budgetId))
+            {
+                throw new Exception("Cannot relate Income with Budget that doesn't exist");
+            }
+
+            await _incomeRepository.AddAsync(new Income(title, value, date, budgetId));
         }
 
-        public Task UpdateIncomeAsync()
+        public async Task DeleteIncomeAsync(Guid id)
         {
-            throw new NotImplementedException();
+            if (!_incomeRepository.IsIncomeExist(id))
+            {
+                throw new Exception("Income object not exist");
+            }
+
+            var income = await _incomeRepository.GetAsync(id);
+            await _incomeRepository.DeleteAsync(income);
+        }
+
+        public async Task UpdateIncomeAsync(Guid id ,string title, decimal value, DateTime date)
+        {
+            if (!_incomeRepository.IsIncomeExist(id))
+            {
+                throw new Exception("Income object not exist");
+            }
+
+            var income = await _incomeRepository.GetAsync(id);
+            income.SetTitle(title);
+            income.SetValue(value);
+            income.SetDate(date);
+            await _incomeRepository.UpdateAsync(income);
         }
     }
 }

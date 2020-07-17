@@ -28,9 +28,9 @@ namespace HomeBudgetCalculator.Infrastructure.Controllers
 
         // GET: api/Users/{login}
         [HttpGet("{login}", Name = "Get")]
-        public IActionResult Get(string login)
+        public async Task<IActionResult> Get(string login)
         {
-            var user = _userService.GetUserAsync(login);
+            var user = await _userService.GetUserAsync(login);
 
             return Ok(user);
         }

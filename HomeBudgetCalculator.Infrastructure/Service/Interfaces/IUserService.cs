@@ -8,7 +8,7 @@ namespace HomeBudgetCalculator.Infrastructure.Service.Interfaces
     {
         IEnumerable<UserDTO> BrowseUsersAsync();
 
-        UserDTO GetUserAsync(string login);
+        Task<UserDTO> GetUserAsync(string login);
 
         Task RegisterUserAsync(string firstName, string lastName, string login, string password, string email);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HomeBudgetCalculator.Core.Domains
 {
@@ -15,6 +16,10 @@ namespace HomeBudgetCalculator.Core.Domains
         public Guid UserId { get; protected set; }
 
         public User User { get; protected set; }
+
+        public IEnumerable<Expense> Expenses { get; protected set; }
+
+        public IEnumerable<Income> Incomes { get; protected set; }
 
         public Budget(Guid userId)
         {
@@ -57,6 +62,10 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public void SetUserId(Guid userId)
         {
+            if (userId == Guid.Empty)
+            {
+                throw new Exception("UserId cannot be empty if u want to relate entities: User <> Budget");
+            }
             UserId = userId;
         }
     }

@@ -3,7 +3,6 @@ using HomeBudgetCalculator.Infrastructure.EntityFramework;
 using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,11 +23,12 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public IQueryable<Budget> GetAllAsync()
+        public IQueryable<Budget> GetAll()
             => _context.Budgets.AsQueryable();
 
-        public Budget GetAsync(Guid id)
-            => _context.Budgets.FirstOrDefault(x => x.Id == id);
+        public async Task<Budget> GetAsync(Guid id)
+            => await _context.Budgets.Include(x => x.Incomes).Include(y => y.Expenses)
+            .FirstOrDefaultAsync(z => z.Id == id);
 
         public async Task DeleteAsync(Budget budget)
         {
@@ -41,8 +41,5 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories
             _context.Budgets.Update(budget);
             await _context.SaveChangesAsync();
         }
-
-        public async Task<Budget> GetByUserIdAsync(Guid userId)
-            => await _context.Budgets.FirstOrDefaultAsync(x => x.UserId == userId);
     }
 }

@@ -14,7 +14,7 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories.Interfaces
 
         Task UpdateAsync(Expense expense);
 
-        Expense GetAsync(Guid id);
+        Task<Expense> GetAsync(Guid id);
 
         IQueryable<Expense> GetAllAsync();
     }

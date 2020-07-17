@@ -14,8 +14,8 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories.Interfaces
 
         Task DeleteAsync(User user);
 
-        User GetAsync(string login);
+        Task<User> GetAsync(string login);
 
-        IQueryable<User> GetAllAsync();
+        IQueryable<User> GetAll();
     }
 }
