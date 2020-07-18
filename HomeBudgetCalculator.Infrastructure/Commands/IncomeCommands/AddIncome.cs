@@ -3,7 +3,7 @@ using System;
 
 namespace HomeBudgetCalculator.Infrastructure.Commands.IncomeCommands
 {
-    public class CreateIncome : ICommand
+    public class AddIncome : ICommand
     {
         public Guid BudgetId { get; set; }
 

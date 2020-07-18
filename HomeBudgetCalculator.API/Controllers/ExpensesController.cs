@@ -37,7 +37,7 @@ namespace HomeBudgetCalculator.API.Controllers
 
         // POST api/<ExpensesController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateExpense command)
+        public async Task<IActionResult> Post([FromBody] AddExpense command)
         {
             await _commandDispatcher.DispatchAsync(command);
 

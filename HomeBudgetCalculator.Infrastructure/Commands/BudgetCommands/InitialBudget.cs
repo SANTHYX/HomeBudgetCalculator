@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HomeBudgetCalculator.Infrastructure.Commands.BudgetCommands
 {
-    public class CreateBudget : ICommand
+    public class InitialBudget : ICommand
     {
         public string UserLogin { get; set; }
     }

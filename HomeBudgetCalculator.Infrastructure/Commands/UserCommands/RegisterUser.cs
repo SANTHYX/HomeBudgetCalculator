@@ -2,7 +2,7 @@
 
 namespace HomeBudgetCalculator.Infrastructure.Commands.UserCommands
 {
-    public class CreateUser : ICommand
+    public class RegisterUser : ICommand
     {
         public string FirstName { get; set; }
 

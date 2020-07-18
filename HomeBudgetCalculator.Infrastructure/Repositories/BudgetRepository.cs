@@ -27,7 +27,7 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories
             => _context.Budgets.AsQueryable();
 
         public async Task<Budget> GetAsync(Guid id)
-            => await _context.Budgets.Include(x => x.Incomes).Include(y => y.Expenses)
+            => await _context.Budgets.Include(x => x.Incomes).Include(z => z.Expenses)
             .FirstOrDefaultAsync(z => z.Id == id);
 
         public async Task DeleteAsync(Budget budget)

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Handlers.Incomes
 {
-    public class CreateIncomeHandler : ICommandHandler<CreateIncome>
+    public class CreateIncomeHandler : ICommandHandler<AddIncome>
     {
         private readonly IIncomeService _incomeService;
 
@@ -13,7 +13,7 @@ namespace HomeBudgetCalculator.Infrastructure.Handlers.Incomes
         {
             _incomeService = incomeService;
         }
-        public async Task HandleAsync(CreateIncome command)
+        public async Task HandleAsync(AddIncome command)
         {
             await _incomeService.AddIncomeAsync(command.BudgetId, command.Title, command.Value,
                 command.Date);

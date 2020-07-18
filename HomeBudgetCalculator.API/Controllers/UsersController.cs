@@ -37,7 +37,7 @@ namespace HomeBudgetCalculator.Infrastructure.Controllers
 
         // POST: api/Users/
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateUser command)
+        public async Task<IActionResult> Post([FromBody] RegisterUser command)
         {
             await _commandDispatcher.DispatchAsync(command);
 

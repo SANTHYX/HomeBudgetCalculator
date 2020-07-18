@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Handlers.Expenses
 {
-    public class CreateExpenseHandler : ICommandHandler<CreateExpense>
+    public class CreateExpenseHandler : ICommandHandler<AddExpense>
     {
         private readonly IExpenseService _expenseService;
 
@@ -13,7 +13,7 @@ namespace HomeBudgetCalculator.Infrastructure.Handlers.Expenses
         {
             _expenseService = expenseService;
         }
-        public async Task HandleAsync(CreateExpense command)
+        public async Task HandleAsync(AddExpense command)
         {
             await _expenseService.AddExpenseAsync(command.BudgetId, command.Title, 
                 command.Value, command.Date);

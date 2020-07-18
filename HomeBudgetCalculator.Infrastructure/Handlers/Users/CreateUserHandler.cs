@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Handlers.Users
 {
-    public class CreateUserHandler : ICommandHandler<CreateUser>
+    public class CreateUserHandler : ICommandHandler<RegisterUser>
     {
         private readonly IUserService _userService;
 
@@ -13,7 +13,7 @@ namespace HomeBudgetCalculator.Infrastructure.Handlers.Users
         {
             _userService = userService;
         }
-        public async Task HandleAsync(CreateUser command)
+        public async Task HandleAsync(RegisterUser command)
         {
             await _userService.RegisterUserAsync(command.FirstName, command.LastName,
                 command.Login, command.Password, command.Email);

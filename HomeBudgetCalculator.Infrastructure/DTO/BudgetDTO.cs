@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace HomeBudgetCalculator.Infrastructure.DTO
 {
     public class BudgetDTO
     {
+        public Guid Id { get; set; }
+
         public decimal BudgetAmount { get; set; }
 
         public decimal TotalIncome { get; set; }

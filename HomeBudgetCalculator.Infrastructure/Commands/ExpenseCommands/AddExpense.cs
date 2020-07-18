@@ -3,7 +3,7 @@ using System;
 
 namespace HomeBudgetCalculator.Infrastructure.Commands.ExpenseCommands
 {
-    public class CreateExpense : ICommand
+    public class AddExpense : ICommand
     {
         public Guid BudgetId { get; set; }
 
