@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Handlers.Expenses
 {
-    public class CreateExpenseHandler : ICommandHandler<AddExpense>
+    public class AddExpenseHandler : ICommandHandler<AddExpense>
     {
         private readonly IExpenseService _expenseService;
 
-        public CreateExpenseHandler(IExpenseService expenseService)
+        public AddExpenseHandler(IExpenseService expenseService)
         {
             _expenseService = expenseService;
         }

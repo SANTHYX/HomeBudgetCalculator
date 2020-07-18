@@ -10,7 +10,7 @@ namespace HomeBudgetCalculator.Infrastructure.Extensions
     {
         public static bool IsExpenseExist(this IExpenseRepository expenseRepository, Guid id)
         {
-            var expense = expenseRepository.GetAllAsync().Where(x => x.Id == id);
+            var expense = expenseRepository.GetAll().Where(x => x.Id == id);
             var expenseExist = expense.Any();
 
             if (expenseExist)
@@ -19,6 +19,15 @@ namespace HomeBudgetCalculator.Infrastructure.Extensions
             }
 
             return false;
+        }
+
+        public static decimal CalculateTotalExpense(this IExpenseRepository expenseRepository,
+            Guid budgetId)
+        {
+            var totalExpense = expenseRepository.GetAll()
+                .Where(x => x.BudgetId == budgetId).Sum(z => z.Value);
+
+            return totalExpense;
         }
     }
 }

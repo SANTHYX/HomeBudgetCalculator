@@ -16,6 +16,6 @@ namespace HomeBudgetCalculator.Infrastructure.Repositories.Interfaces
 
         Task<Expense> GetAsync(Guid id);
 
-        IQueryable<Expense> GetAllAsync();
+        IQueryable<Expense> GetAll();
     }
 }

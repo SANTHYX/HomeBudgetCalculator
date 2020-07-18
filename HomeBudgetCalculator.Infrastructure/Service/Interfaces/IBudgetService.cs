@@ -5,8 +5,8 @@ namespace HomeBudgetCalculator.Infrastructure.Service.Interfaces
 {
     public interface IBudgetService : IService
     {
-        Task CreateBudgetAsync(string login);
+        Task InitializeBudgetAsync(string login);
 
-        Task UpdateBudgetAsync(Guid id, decimal budgetAmount, decimal totalIncome, decimal totalExpense);
+        Task UpdateBudgetAsync(Guid id);
     }
 }

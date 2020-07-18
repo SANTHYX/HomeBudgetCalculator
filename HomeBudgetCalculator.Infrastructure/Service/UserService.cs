@@ -57,7 +57,6 @@ namespace HomeBudgetCalculator.Infrastructure.Service
             }
 
             var user = await _userRepository.GetAsync(login);
-            user.SetLogin(login);
             user.SetPassword(password);
             user.SetEmail(email);
 

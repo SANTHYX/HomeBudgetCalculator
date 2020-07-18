@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace HomeBudgetCalculator.Infrastructure.Handlers.Incomes
 {
-    public class CreateIncomeHandler : ICommandHandler<AddIncome>
+    public class AddIncomeHandler : ICommandHandler<AddIncome>
     {
         private readonly IIncomeService _incomeService;
 
-        public CreateIncomeHandler(IIncomeService incomeService)
+        public AddIncomeHandler(IIncomeService incomeService)
         {
             _incomeService = incomeService;
         }

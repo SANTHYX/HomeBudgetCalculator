@@ -15,8 +15,7 @@ namespace HomeBudgetCalculator.Infrastructure.Handlers.Budgets
         }
         public async Task HandleAsync(UpdateBudget command)
         {
-            await _budgetService.UpdateBudgetAsync(command.Id, command.BudgetAmount, 
-                command.TotalIncome, command.TotalExpense);
+            await _budgetService.UpdateBudgetAsync(command.Id);
         }
     }
 }

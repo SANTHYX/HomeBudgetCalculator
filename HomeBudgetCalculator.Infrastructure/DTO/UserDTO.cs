@@ -1,6 +1,4 @@
-﻿using HomeBudgetCalculator.Core.Domains;
-
-namespace HomeBudgetCalculator.Infrastructure.DTO
+﻿namespace HomeBudgetCalculator.Infrastructure.DTO
 {
     public class UserDTO
     {

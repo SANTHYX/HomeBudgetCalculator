@@ -12,13 +12,18 @@ namespace HomeBudgetCalculator.Infrastructure.Service
     {
         private readonly IUserRepository _userRepository;
         private readonly IBudgetRepository _budgetRepository;
+        private readonly IExpenseRepository _expenseRepository;
+        private readonly IIncomeRepository _incomeRepository;
 
-        public BudgetService(IUserRepository userRepository, IBudgetRepository budgetRepository, IMapper mapper)
+        public BudgetService(IUserRepository userRepository, IBudgetRepository budgetRepository,
+            IExpenseRepository expenseRepository, IIncomeRepository incomeRepository)
         {
             _userRepository = userRepository;
             _budgetRepository = budgetRepository;
+            _expenseRepository = expenseRepository;
+            _incomeRepository = incomeRepository;
         }
-        public async Task CreateBudgetAsync(string login)
+        public async Task InitializeBudgetAsync(string login)
         {
             if(!_userRepository.IsUserExist(login))
             {
@@ -30,7 +35,7 @@ namespace HomeBudgetCalculator.Infrastructure.Service
             await _userRepository.UpdateAsync(user);
         }
 
-        public async Task UpdateBudgetAsync(Guid id, decimal budgetAmount, decimal totalIncome, decimal totalExpense)
+        public async Task UpdateBudgetAsync(Guid id)
         {
             if (!_budgetRepository.IsBudgetExist(id))
             {
@@ -38,9 +43,9 @@ namespace HomeBudgetCalculator.Infrastructure.Service
             }
 
             var budget = await _budgetRepository.GetAsync(id);
-            budget.SetBudgetAmount(budgetAmount);
-            budget.SetTotalIncome(totalIncome);
-            budget.SetTotalExpense(totalExpense);
+            budget.SetTotalIncome(_incomeRepository.CalculateTotalIncome(id));
+            budget.SetTotalExpense(_expenseRepository.CalculateTotalExpense(id));
+            budget.SetBudgetAmount(budget.TotalIncome - budget.TotalExpense);
 
             await _budgetRepository.UpdateAsync(budget);
         }

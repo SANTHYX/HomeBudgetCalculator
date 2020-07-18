@@ -1,11 +1,8 @@
 ﻿using HomeBudgetCalculator.Infrastructure.Commands.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HomeBudgetCalculator.Infrastructure.Commands.BudgetCommands
 {
-    public class InitialBudget : ICommand
+    public class InitializeBudget : ICommand
     {
         public string UserLogin { get; set; }
     }

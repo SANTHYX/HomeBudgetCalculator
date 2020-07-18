@@ -18,5 +18,14 @@ namespace HomeBudgetCalculator.Infrastructure.Extensions
 
             return false;
         }
+
+        public static decimal CalculateTotalIncome(this IIncomeRepository incomeRepository,
+            Guid budgetId)
+        {
+            var totalIncome = incomeRepository.GetAll()
+                .Where(x => x.BudgetId == budgetId).Sum(z => z.Value);
+
+            return totalIncome;
+        }
     }
 }
