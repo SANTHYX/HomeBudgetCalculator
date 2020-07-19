@@ -53,13 +53,12 @@ namespace HomeBudgetCalculator.Infrastructure.Controllers
             return Ok();
         }
 
-        /*
+
         // DELETE: api/Users/
-        [HttpDelete]
-        public async Task<IActionResult> Delete()
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            return Ok();
         }
-        */
+
     }
 }

@@ -21,14 +21,14 @@ namespace HomeBudgetCalculator.API.Controllers
             _budgetService = budgetService;
             _commandDispatcher = commandDispatcher;
         }
-        // GET: api/<Budgets/
+        // GET: api/Budgets/
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<BudgetsController>/5
+        // GET api/Budgets/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -53,7 +53,7 @@ namespace HomeBudgetCalculator.API.Controllers
             return Ok();
         }
 
-        // DELETE api/<BudgetsController>/5
+        // DELETE api/Budgets/
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

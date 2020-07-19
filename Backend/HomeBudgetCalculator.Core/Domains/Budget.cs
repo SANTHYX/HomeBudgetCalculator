@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HomeBudgetCalculator.Core.Exceptions;
+using System;
 using System.Collections.Generic;
 
 namespace HomeBudgetCalculator.Core.Domains
@@ -44,7 +45,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (totalIncome < 0)
             {
-                throw new Exception("Income cannot be less than zero");
+                throw new DomainExceptions(DomainErrorCodes.InvalidTotalIncome, 
+                    "Income cannot be less than zero");
             }
 
             TotalIncome = totalIncome;
@@ -54,7 +56,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (totalExpense < 0)
             {
-                throw new Exception("Income cannot be less than zero");
+                throw new DomainExceptions(DomainErrorCodes.InvalidTotalExpense, 
+                    "Income cannot be less than zero");
             }
 
             TotalExpense = totalExpense;
@@ -64,7 +67,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (userId == Guid.Empty)
             {
-                throw new Exception("UserId cannot be empty if u want to relate entities: User <> Budget");
+                throw new DomainExceptions(DomainErrorCodes.InvalidUserId, 
+                    "UserId cannot be empty if u want to relate entities: User <> Budget");
             }
             UserId = userId;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HomeBudgetCalculator.Core.Exceptions;
+using System;
 
 namespace HomeBudgetCalculator.Core.Domains
 {
@@ -29,7 +30,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (string.IsNullOrWhiteSpace(title))
             {
-                throw new Exception("Title cannot be empty");
+                throw new DomainExceptions(DomainErrorCodes.InvalidTitle, 
+                    "Title cannot be empty");
             }
             if (Title == title)
             {
@@ -43,7 +45,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (value == decimal.Zero)
             {
-                throw new Exception("Value cannot be empty");
+                throw new DomainExceptions(DomainErrorCodes.InvalidValue, 
+                    "Value cannot be empty");
             }
             if (Value == value)
             {
@@ -57,7 +60,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (date == DateTime.MinValue)
             {
-                throw new Exception("Wrong value of date");
+                throw new DomainExceptions(DomainErrorCodes.InvalidDate, 
+                    "Wrong value of date");
             }
             if (Date == date)
             {
@@ -71,7 +75,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (budgetId == Guid.Empty)
             {
-                throw new Exception("BudgetId cannot be empty if u want to relate entities: Budget <> Expense");
+                throw new DomainExceptions(DomainErrorCodes.InvalidBudgetId, 
+                    "BudgetId cannot be empty if u want to relate entities: Budget <> Expense");
             }
 
             BudgetId = budgetId;

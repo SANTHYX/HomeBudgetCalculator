@@ -1,4 +1,5 @@
-﻿using HomeBudgetCalculator.Core.Extension;
+﻿using HomeBudgetCalculator.Core.Exceptions;
+using HomeBudgetCalculator.Core.Extension;
 using System;
 
 namespace HomeBudgetCalculator.Core.Domains
@@ -33,7 +34,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (string.IsNullOrWhiteSpace(firstName))
             {
-                throw new Exception("Name cannot be empty");
+                throw new DomainExceptions(DomainErrorCodes.InvalidFirstName, 
+                    "Name cannot be empty");
             }
             if (FirstName == firstName)
             {
@@ -47,7 +49,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (string.IsNullOrWhiteSpace(lastName))
             {
-                throw new Exception("Name cannot be empty");
+                throw new DomainExceptions(DomainErrorCodes.InvalidLastName, 
+                    "Name cannot be empty");
             }
             if (LastName == lastName)
             {
@@ -61,11 +64,13 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (string.IsNullOrWhiteSpace(login))
             {
-                throw new Exception("Login cannot be empty");
+                throw new DomainExceptions(DomainErrorCodes.InvalidLogin, 
+                    "Login cannot be empty");
             }
             if (!login.IsLoginValid())
             {
-                throw new Exception("Login in this form is too weak");
+                throw new DomainExceptions(DomainErrorCodes.InvalidLogin, 
+                    "Login in this form is too weak");
             }
             if (Login == login)
             {
@@ -79,11 +84,13 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new Exception("Password cannot be empty");
+                throw new DomainExceptions(DomainErrorCodes.InvalidPassword, 
+                    "Password cannot be empty");
             }
             if (!password.IsPasswordValid())
             {
-                throw new Exception("Password is weak");
+                throw new DomainExceptions(DomainErrorCodes.InvalidPassword, 
+                    "Password is weak");
             }
             if (Password == password)
             {
@@ -97,11 +104,13 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (string.IsNullOrWhiteSpace(email))
             {
-                throw new Exception("Email cannot be empty");
+                throw new DomainExceptions(DomainErrorCodes.InvalidEmail, 
+                    "Email cannot be empty");
             }
             if (!email.IsEmailValid())
             {
-                throw new Exception("Invalid Email string");
+                throw new DomainExceptions(DomainErrorCodes.InvalidEmail, 
+                    "Invalid Email string");
             }
             if (Email == email)
             {

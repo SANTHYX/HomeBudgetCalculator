@@ -4,12 +4,11 @@ using System.Linq;
 
 namespace HomeBudgetCalculator.Infrastructure.Extensions
 {
-    public static class IncomeExtension
+    public static class IncomeRepositoryExtension
     {
         public static bool IsIncomeExist(this IIncomeRepository incomeRepository,Guid id)
         {
-            var income = incomeRepository.GetAll().Where(x => x.Id == id);
-            var incomeExist = income.Any();
+            var incomeExist = incomeRepository.GetAll().Where(x => x.Id == id).Any();
 
             if (incomeExist)
             {
@@ -23,7 +22,7 @@ namespace HomeBudgetCalculator.Infrastructure.Extensions
             Guid budgetId)
         {
             var totalIncome = incomeRepository.GetAll()
-                .Where(x => x.BudgetId == budgetId).Sum(z => z.Value);
+                .Where(x => x.BudgetId == budgetId).Sum(y => y.Value);
 
             return totalIncome;
         }

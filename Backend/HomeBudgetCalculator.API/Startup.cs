@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HomeBudgetCalculator.Infrastructure.Mapper;
+using HomeBudgetCalculator.API.Middleware;
 
 namespace HomeBudgetCalculator.Infrastructure
 {
@@ -47,6 +48,8 @@ namespace HomeBudgetCalculator.Infrastructure
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware(typeof(ExceptionMiddlewareHandler));
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,4 +1,5 @@
 ﻿using HomeBudgetCalculator.Core.Domains;
+using HomeBudgetCalculator.Infrastructure.Exceptions;
 using HomeBudgetCalculator.Infrastructure.Extensions;
 using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
@@ -22,7 +23,8 @@ namespace HomeBudgetCalculator.Infrastructure.Service
         {
             if (!_budgetRepository.IsBudgetExist(budgetId))
             {
-                throw new Exception("Cannot relate Income with Budget that doesn't exist");
+                throw new ServiceExceptions(ServiceErrorCodes.BudgetNotExist, 
+                    "Cannot relate Income with Budget that doesn't exist");
             }
 
             await _incomeRepository.AddAsync(new Income(title, value, date, budgetId));
@@ -32,7 +34,8 @@ namespace HomeBudgetCalculator.Infrastructure.Service
         {
             if (!_incomeRepository.IsIncomeExist(id))
             {
-                throw new Exception("Income object not exist");
+                throw new ServiceExceptions(ServiceErrorCodes.IncomeNotExist, 
+                    "Income object not exist");
             }
 
             var income = await _incomeRepository.GetAsync(id);
@@ -43,7 +46,8 @@ namespace HomeBudgetCalculator.Infrastructure.Service
         {
             if (!_incomeRepository.IsIncomeExist(id))
             {
-                throw new Exception("Income object not exist");
+                throw new ServiceExceptions(ServiceErrorCodes.IncomeNotExist, 
+                    "Income object not exist");
             }
 
             var income = await _incomeRepository.GetAsync(id);

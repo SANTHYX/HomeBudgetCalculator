@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using HomeBudgetCalculator.Core.Domains;
 using HomeBudgetCalculator.Infrastructure.DTO;
+using HomeBudgetCalculator.Infrastructure.Exceptions;
 using HomeBudgetCalculator.Infrastructure.Extensions;
 using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -43,23 +43,24 @@ namespace HomeBudgetCalculator.Infrastructure.Service
         {
             if (_userRepository.IsUserExist(login))
             {
-                throw new Exception($"User with this login: {login} already exist");
+                throw new ServiceExceptions(ServiceErrorCodes.UserExist, 
+                    $"User with this login: {login} already exist");
             }
 
             await _userRepository.AddAsync(new User(firstName, lastName, login, password, email));
         }
-        /*UpdateUserAsync wymaga przemyślenia*/
+
         public async Task UpdateUserAsync(string login, string password, string email)
         {
             if (!_userRepository.IsUserExist(login))
             {
-                throw new Exception($"User with login: {login} don't exist");
+                throw new ServiceExceptions(ServiceErrorCodes.UserNotExist, 
+                    $"User with login: {login} don't exist");
             }
 
             var user = await _userRepository.GetAsync(login);
             user.SetPassword(password);
             user.SetEmail(email);
-
             await _userRepository.UpdateAsync(user);
         }
     }

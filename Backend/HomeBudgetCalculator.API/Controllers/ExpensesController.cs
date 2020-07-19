@@ -21,21 +21,21 @@ namespace HomeBudgetCalculator.API.Controllers
             _expenseService = expenseService;
             _commandDispatcher = commandDispatcher;
         }
-        // GET: api/<ExpensesController>
+        // GET: api/Expenses/
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<ExpensesController>/5
+        // GET api/Expenses/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<ExpensesController>
+        // POST api/Expenses/
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AddExpense command)
         {
@@ -44,7 +44,7 @@ namespace HomeBudgetCalculator.API.Controllers
             return Ok();
         }
 
-        // PUT api/<ExpensesController>/5
+        // PUT api/Expenses/
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] UpdateExpense command)
         {
@@ -53,7 +53,7 @@ namespace HomeBudgetCalculator.API.Controllers
             return Ok();
         }
 
-        // DELETE api/<ExpensesController>/5
+        // DELETE api/Expenses/
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromBody] DeleteExpense command)
         {
