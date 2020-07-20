@@ -9,6 +9,7 @@ namespace HomeBudgetCalculator.Infrastructure.IoC.Modules
             builder.RegisterModule<RepositoryContainer>();
             builder.RegisterModule<ServiceContainer>();
             builder.RegisterModule<SqlContainer>();
+            builder.RegisterModule<JWTContainer>();
         }
     }
 }

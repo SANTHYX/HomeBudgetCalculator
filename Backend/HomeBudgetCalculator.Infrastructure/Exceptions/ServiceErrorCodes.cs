@@ -11,5 +11,7 @@
         public static string UserExist => "user_exist";
 
         public static string IncomeNotExist => "income_not_exist";
+
+        public static string InvalidCredentials => "invalid_credentials";
     }
 }

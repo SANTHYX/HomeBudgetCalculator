@@ -13,5 +13,7 @@ namespace HomeBudgetCalculator.Infrastructure.Service.Interfaces
         Task RegisterUserAsync(string firstName, string lastName, string login, string password, string email);
 
         Task UpdateUserAsync(string login, string password, string email);
+
+        Task SignIn(string login, string password);
     }
 }

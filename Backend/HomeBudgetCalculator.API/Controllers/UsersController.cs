@@ -2,16 +2,19 @@
 using HomeBudgetCalculator.Infrastructure.Commands.UserCommands;
 using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeBudgetCalculator.Infrastructure.Controllers
 {
+    [Authorize(Policy = "Budget")]
     [Route("[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
         private readonly ICommandDispatcher _commandDispatcher;
+
         public UsersController(IUserService userService, ICommandDispatcher commandDispatcher)
         {
             _userService = userService;
@@ -35,7 +38,7 @@ namespace HomeBudgetCalculator.Infrastructure.Controllers
             return Ok(user);
         }
 
-        // POST: api/Users/
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RegisterUser command)
         {

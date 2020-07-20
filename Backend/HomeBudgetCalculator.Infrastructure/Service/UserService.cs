@@ -3,6 +3,7 @@ using HomeBudgetCalculator.Core.Domains;
 using HomeBudgetCalculator.Infrastructure.DTO;
 using HomeBudgetCalculator.Infrastructure.Exceptions;
 using HomeBudgetCalculator.Infrastructure.Extensions;
+using HomeBudgetCalculator.Infrastructure.JWT.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Repositories.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
 using System.Collections.Generic;
@@ -15,12 +16,15 @@ namespace HomeBudgetCalculator.Infrastructure.Service
     {
         private readonly IUserRepository _userRepository;
         private readonly IBudgetRepository _budgetRepository;
+        private readonly IEncrypter _encrypter;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository, IBudgetRepository budgetRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IBudgetRepository budgetRepository, 
+            IEncrypter encrypter, IMapper mapper)
         {
             _userRepository = userRepository;
             _budgetRepository = budgetRepository;
+            _encrypter = encrypter;
             _mapper = mapper;
         }
 
@@ -47,7 +51,25 @@ namespace HomeBudgetCalculator.Infrastructure.Service
                     $"User with this login: {login} already exist");
             }
 
-            await _userRepository.AddAsync(new User(firstName, lastName, login, password, email));
+            var salt = _encrypter.GetSalt(password);
+            var hash = _encrypter.GetHash(password, salt);
+            await _userRepository.AddAsync(new User(firstName, lastName, login, hash, salt, email));
+        }
+
+        public async Task SignIn(string login, string password)
+        {
+            if (!_userRepository.IsUserExist(login))
+            {
+                throw new ServiceExceptions(ServiceErrorCodes.InvalidCredentials,
+                    $"Invalid Credentials");
+            }
+
+            var user = await _userRepository.GetAsync(login);
+            var hash = _encrypter.GetHash(password, user.Salt);
+            if (user.Password == hash)
+            {
+                return;
+            }
         }
 
         public async Task UpdateUserAsync(string login, string password, string email)
@@ -59,7 +81,9 @@ namespace HomeBudgetCalculator.Infrastructure.Service
             }
 
             var user = await _userRepository.GetAsync(login);
-            user.SetPassword(password);
+            var salt = _encrypter.GetSalt(password);
+            var hash = _encrypter.GetHash(password, salt);
+            user.SetPassword(hash, salt);
             user.SetEmail(email);
             await _userRepository.UpdateAsync(user);
         }

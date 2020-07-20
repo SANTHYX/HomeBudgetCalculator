@@ -16,17 +16,20 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public string Password { get; protected set; }
 
+        public string Salt { get; protected set; }
+
         public string Email { get; protected set; }
 
         public Budget Budget { get; protected set; }
 
-        public User(string firstName, string lastName, string login, string password, string email)
+        public User(string firstName, string lastName, string login, 
+            string password, string salt, string email)
         {
             Id = Guid.NewGuid();
             SetFirstName(firstName);
             SetLastName(lastName);
             SetLogin(login);
-            SetPassword(password);
+            SetPassword(password, salt);
             SetEmail(email);
         }
 
@@ -80,12 +83,17 @@ namespace HomeBudgetCalculator.Core.Domains
             Login = login;
         }
 
-        public void SetPassword(string password)
+        public void SetPassword(string password, string salt)
         {
             if (string.IsNullOrWhiteSpace(password))
             {
                 throw new DomainExceptions(DomainErrorCodes.InvalidPassword, 
                     "Password cannot be empty");
+            }
+            if (string.IsNullOrWhiteSpace(salt))
+            {
+                throw new DomainExceptions(DomainErrorCodes.InvalidPassword,
+                    "Salt cannot be empty");
             }
             if (!password.IsPasswordValid())
             {
@@ -98,6 +106,7 @@ namespace HomeBudgetCalculator.Core.Domains
             }
 
             Password = password;
+            Salt = salt;
         }
 
         public void SetEmail(string email)

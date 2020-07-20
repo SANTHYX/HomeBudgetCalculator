@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HomeBudgetCalculator.Infrastructure.Mapper;
 using HomeBudgetCalculator.API.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace HomeBudgetCalculator.Infrastructure
 {
@@ -25,9 +28,34 @@ namespace HomeBudgetCalculator.Infrastructure
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.AddControllers();
             services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Budget", policy =>
+                {
+                    policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                    policy.RequireAuthenticatedUser();
+                });
+            });
+
+            services.AddAuthentication(x =>
+            x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme
+            ).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    RequireExpirationTime = false,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("projekt_zespolowy_!12345")),
+                };
+            });
+            services.AddAuthorization();
         }
 
         public void ConfigureContainer(Autofac.ContainerBuilder builder)
