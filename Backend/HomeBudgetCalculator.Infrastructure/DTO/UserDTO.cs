@@ -1,4 +1,6 @@
-﻿namespace HomeBudgetCalculator.Infrastructure.DTO
+﻿using System;
+
+namespace HomeBudgetCalculator.Infrastructure.DTO
 {
     public class UserDTO
     {
@@ -11,5 +13,7 @@
         public string Email { get; set; }
 
         public BudgetDTO Budget { get; set; }
+
+        public DateTime CreatedAt { get; set; }
     }
 }

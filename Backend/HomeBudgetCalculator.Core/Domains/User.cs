@@ -22,6 +22,8 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public Budget Budget { get; protected set; }
 
+        public DateTime CreatedAt { get; protected set; }
+
         public User(string firstName, string lastName, string login, 
             string password, string salt, string email)
         {
@@ -31,6 +33,7 @@ namespace HomeBudgetCalculator.Core.Domains
             SetLogin(login);
             SetPassword(password, salt);
             SetEmail(email);
+            CreatedAt = DateTime.Now;
         }
 
         public void SetFirstName(string firstName)
