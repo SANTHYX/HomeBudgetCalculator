@@ -34,7 +34,7 @@ namespace HomeBudgetCalculator.Infrastructure
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Budget", policy =>
+                options.AddPolicy("AplicationPolicy", policy =>
                 {
                     policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                     policy.RequireAuthenticatedUser();

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeBudgetCalculator.Infrastructure.Controllers
 {
-    [Authorize(Policy = "Budget")]
+    [Authorize(Policy = "AplicationPolicy")]
     [Route("[controller]")]
     [ApiController]
     public class UsersController : ControllerBase

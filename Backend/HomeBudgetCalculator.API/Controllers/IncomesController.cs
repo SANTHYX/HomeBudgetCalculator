@@ -3,12 +3,14 @@ using System.Threading.Tasks;
 using HomeBudgetCalculator.Infrastructure.Commands.IncomeCommands;
 using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
 using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HomeBudgetCalculator.API.Controllers
 {
+    [Authorize(Policy = "AplicationPolicy")]
     [Route("[controller]")]
     [ApiController]
     public class IncomesController : ControllerBase
