@@ -24,7 +24,6 @@ namespace HomeBudgetCalculator.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SignUpUser command)
         {
-            command.TokenId = Guid.NewGuid();
             await _commandDispatcher.DispatchAsync(command);
 
             return Ok(command.Token);
