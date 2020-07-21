@@ -56,7 +56,7 @@ namespace HomeBudgetCalculator.API.Controllers
         }
 
         // DELETE api/Expenses/
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteExpense command)
         {
             await _commandDispatcher.DispatchAsync(command);

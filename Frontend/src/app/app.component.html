@@ -1,0 +1,12 @@
+<div *ngIf="loggedIn else login">
+  <app-navbar></app-navbar>
+  <main [@routeAnimations]="prepareRoute(outlet)" class="content">
+  <router-outlet #outlet="outlet"></router-outlet>
+  </main>
+
+</div>
+<ng-template #login>
+  <app-login></app-login>
+</ng-template>
+
+

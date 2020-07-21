@@ -1,0 +1,13 @@
+<div class="text-center mt-4">
+  <p class="h1">Przychody</p>
+</div>
+<table class="table table-borderless">
+  <tbody>
+  <tr *ngFor="let details of valueService.incomesList; index as i">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{details.title}}</td>
+    <td>{{details.value}}</td>
+    <td>{{details.date | date}}</td>
+  </tr>
+  </tbody>
+</table>

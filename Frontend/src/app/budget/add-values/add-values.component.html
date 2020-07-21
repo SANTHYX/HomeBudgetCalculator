@@ -1,0 +1,27 @@
+<div class="col-8 m-auto" *ngIf="data | async as details">
+  <form>
+    <div class="form-row">
+      <div class="col-sm">
+        <label for="name"></label>
+        <input type="text"
+               class="form-control"
+               id="name"
+               placeholder="Nazwa"
+               [(ngModel)]="name"
+               name="name">
+      </div>
+      <div class="col-sm">
+        <label for="values"></label>
+        <input type="text"
+               class="form-control"
+               id="values"
+               placeholder="Wartość" [(ngModel)]="values"
+               name="values">
+      </div>
+      <div class="col-sm">
+        <button class="btn btn-success col col-sm-4 mr-2" (click)="addIncomes(details.budget.id)">+</button>
+        <button class="btn btn-danger col col-sm-4" (click)="addExpenses(details.budget.id)">-</button>
+      </div>
+    </div>
+  </form>
+</div>

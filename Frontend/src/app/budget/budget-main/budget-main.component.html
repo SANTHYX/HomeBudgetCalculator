@@ -1,0 +1,25 @@
+<div *ngIf="data | async as info">
+  <div class="text-center mt-4">
+    <p class="display-4">Budżet Miesięczny</p>
+  </div>
+
+    <div class="row align-items-center h-100 text-center">
+      <div class="col-sm-6 order-sm-2">
+        <canvas baseChart
+
+                [data]="donutDat()"
+                [labels]="donutlabels"
+                [chartType]="donutType">
+        </canvas>
+      </div>
+      <div class="display-4 col col-sm-3 order-sm-1" style="color: #87C7F3;">
+        {{valueService.totalIncome}}
+      </div>
+      <div class="display-4 col col-sm-3 order-sm-3" style="color: #FFA1B5">
+        {{valueService.totalExpense}}
+      </div>
+    </div>
+    <div class="text-center">
+      <p class="display-4">{{valueService.totalBudget}}</p>
+    </div>
+  </div>
