@@ -1,12 +1,11 @@
-export class IncomeDTO {
+export class AddValuesDTO {
   constructor(budgetId: string, title: string, value: number, date: Date) {
-    this.id = budgetId;
+    this.budgetId = budgetId;
     this.title = title;
     this.value = value;
-    this.date = date;
+    this.date = date
   }
-
-  id: string
+  budgetId: string
   title: string
   value: number
   date: Date

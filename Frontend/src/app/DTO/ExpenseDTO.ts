@@ -1,8 +1,13 @@
-import {Guid} from "guid-typescript";
-
 export class ExpenseDTO {
-  Id: Guid
-  Title: string
-  Value: number
-  Date: Date
+  id: string
+  title: string
+  value: number
+  date: Date
+
+  constructor(budgetId: string, title: string, value: number, date: Date) {
+    this.id = budgetId;
+    this.title = title;
+    this.value = value;
+    this.date = date;
+  }
 }

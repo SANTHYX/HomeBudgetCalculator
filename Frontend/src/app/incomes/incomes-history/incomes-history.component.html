@@ -1,0 +1,17 @@
+<div class="text-center mt-4">
+  <p class="display-4">Przychody</p>
+</div>
+<table class="table table-borderless">
+  <tbody>
+  <tr *ngFor="let details of valueService.incomesList; index as i">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{details.title}}</td>
+    <td>{{details.value}}</td>
+    <td>{{details.date | date}}</td>
+    <td><a class="btn-block" (click)="delete(details.id)">usuń</a></td>
+  </tr>
+  </tbody>
+  <ng-template #empty>
+    <p>Brak elementów</p>
+  </ng-template>
+</table>

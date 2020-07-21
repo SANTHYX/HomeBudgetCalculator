@@ -1,0 +1,116 @@
+<div class="d-flex" style="height: 100vh">
+  <div class="container h-100">
+    <div class="row align-items-center h-100">
+      <div class="col-6 mx-auto">
+        <div class="jumbotron">
+          <div *ngIf="loginForm else registerForm">
+            <form>
+              <div class="form-group">
+                <label for="login">
+                  Nazwa użytkownika
+                </label>
+                <input type="text"
+                       class="form-control"
+                       id="login"
+                       [(ngModel)]="login"
+                       name="login">
+              </div>
+              <div class="form-group">
+                <label for="password">
+                  Hasło
+                </label>
+                <input type="password"
+                       class="form-control"
+                       id="password"
+                       [(ngModel)]="password"
+                       name="password">
+              </div>
+              <div class="row m-auto">
+                <button type="button" class="btn btn-primary col-5 m-auto"
+                        (click)="logIn()">
+                  Zaloguj
+                </button>
+                <button type="button" class="btn btn-primary col-5 m-auto"
+                        (click)="changeForm()">
+                  Rejestracja
+                </button>
+              </div>
+
+            </form>
+          </div>
+          <ng-template #registerForm>
+            <div>
+              <form>
+                <div class="form-group">
+                  <label for="firstName">
+                    Imię
+                  </label>
+                  <input type="text"
+                         class="form-control"
+                         id="firstName"
+                         [(ngModel)]="firstName"
+                         name="firstName">
+                </div>
+                <div class="form-group">
+                  <label for="lastName">
+                    Nazwisko
+                  </label>
+                  <input type="text"
+                         class="form-control"
+                         id="lastName"
+                         [(ngModel)]="lastName"
+                         name="lastName">
+                </div>
+                <div class="form-group">
+                  <label for="login">
+                    Nazwa użytkownika
+                  </label>
+                  <label for="loginReg"></label>
+                  <input type="text"
+                         class="form-control"
+                         id="loginReg"
+                         [(ngModel)]="login"
+                         name="login">
+                </div>
+                <div class="form-group">
+                  <label for="password">
+                    Hasło
+                  </label>
+                  <label for="passwordReg"></label>
+                  <input type="password"
+                         class="form-control"
+                         id="passwordReg"
+                         [(ngModel)]="password"
+                         name="password">
+                </div>
+                <div class="form-group">
+                  <label for="email">
+                    Email
+                  </label>
+                  <input type="text"
+                         class="form-control"
+                         id="email"
+                         [(ngModel)]="email"
+                         name="email">
+                </div>
+                <div class="row m-auto">
+                  <button type="button" class="btn btn-primary col-5 m-auto"
+                          (click)="register()">
+                    Zarejestruj
+                  </button>
+                  <button type="button" class="btn btn-primary col-5 m-auto"
+                          (click)="changeForm()">
+                    Logowanie
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

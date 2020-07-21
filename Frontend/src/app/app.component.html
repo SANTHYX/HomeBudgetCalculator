@@ -1,2 +1,12 @@
-<app-navbar></app-navbar>
-<app-budget class="d-flex justify-content-center"></app-budget>
+<div *ngIf="loggedIn else login">
+  <app-navbar></app-navbar>
+  <main [@routeAnimations]="prepareRoute(outlet)" class="content">
+  <router-outlet #outlet="outlet"></router-outlet>
+  </main>
+
+</div>
+<ng-template #login>
+  <app-login></app-login>
+</ng-template>
+
+
