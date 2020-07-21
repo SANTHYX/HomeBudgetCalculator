@@ -56,6 +56,7 @@ namespace HomeBudgetCalculator.Infrastructure
                 };
             });
             services.AddAuthorization();
+            services.AddCors();
         }
 
         public void ConfigureContainer(Autofac.ContainerBuilder builder)
@@ -70,6 +71,9 @@ namespace HomeBudgetCalculator.Infrastructure
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(x => {
+                x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
 
             app.UseHttpsRedirection();
 
