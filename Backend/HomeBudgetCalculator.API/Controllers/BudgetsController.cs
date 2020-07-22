@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using HomeBudgetCalculator.Infrastructure.Commands.BudgetCommands;
 using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
-using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,12 +11,10 @@ namespace HomeBudgetCalculator.API.Controllers
     [ApiController]
     public class BudgetsController : ControllerBase
     {
-        private readonly IBudgetService _budgetService;
         private readonly ICommandDispatcher _commandDispatcher;
 
-        public BudgetsController(IBudgetService budgetService, ICommandDispatcher commandDispatcher)
+        public BudgetsController(ICommandDispatcher commandDispatcher)
         {
-            _budgetService = budgetService;
             _commandDispatcher = commandDispatcher;
         }
 

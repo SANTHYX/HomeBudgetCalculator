@@ -12,12 +12,10 @@ namespace HomeBudgetCalculator.API.Controllers
     [ApiController]
     public class IncomesController : ControllerBase
     {
-        private readonly IIncomeService _incomeService;
         private readonly ICommandDispatcher _commandDispatcher;
 
-        public IncomesController(IIncomeService incomeService, ICommandDispatcher commandDispatcher)
+        public IncomesController(ICommandDispatcher commandDispatcher)
         {
-            _incomeService = incomeService;
             _commandDispatcher = commandDispatcher;
         }
 
