@@ -38,6 +38,7 @@ namespace HomeBudgetCalculator.Infrastructure.Controllers
             return Ok(user);
         }
 
+        // POST: api/Users/
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RegisterUser command)
