@@ -55,13 +55,5 @@ namespace HomeBudgetCalculator.Infrastructure.Controllers
 
             return Ok();
         }
-
-
-        // DELETE: api/Users/
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-
     }
 }

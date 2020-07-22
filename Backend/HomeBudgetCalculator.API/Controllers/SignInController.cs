@@ -1,11 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using HomeBudgetCalculator.Infrastructure.Commands.UserCommands;
 using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HomeBudgetCalculator.API.Controllers
 {
@@ -20,7 +16,7 @@ namespace HomeBudgetCalculator.API.Controllers
             _commandDispatcher = commandDispatcher;
         }
 
-        // POST api/<SignInController>
+        // POST SignIn/
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SignUpUser command)
         {

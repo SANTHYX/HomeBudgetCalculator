@@ -1,4 +1,5 @@
 ﻿using Autofac;
+
 namespace HomeBudgetCalculator.Infrastructure.IoC.Modules
 {
     public class MainContainer : Autofac.Module
