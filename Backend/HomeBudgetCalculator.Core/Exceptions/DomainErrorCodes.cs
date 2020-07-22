@@ -8,7 +8,7 @@
 
         public static string InvalidFirstName => "invalid_firstname";
 
-        public static string InvalidLastName => "invalid lastname;";
+        public static string InvalidLastName => "invalid lastname";
 
         public static string InvalidEmail => "invalid email";
 

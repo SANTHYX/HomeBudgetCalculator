@@ -4,6 +4,10 @@ namespace HomeBudgetCalculator.Core.Exceptions
 {
     public class DomainExceptions : ApplicationExceptions
     {
+        public DomainExceptions()
+        {
+        }
+
         public DomainExceptions(string code) : base(code)
         {
            

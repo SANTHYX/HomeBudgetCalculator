@@ -22,6 +22,11 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public IEnumerable<Income> Incomes { get; protected set; }
 
+        public Budget()
+        {
+
+        }
+
         public Budget(Guid userId)
         {
             Id = Guid.NewGuid();
@@ -57,7 +62,7 @@ namespace HomeBudgetCalculator.Core.Domains
             if (totalExpense < 0)
             {
                 throw new DomainExceptions(DomainErrorCodes.InvalidTotalExpense, 
-                    "Income cannot be less than zero");
+                    "Expense cannot be less than zero");
             }
 
             TotalExpense = totalExpense;

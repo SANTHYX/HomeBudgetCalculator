@@ -6,30 +6,35 @@ namespace HomeBudgetCalculator.Core.Exceptions
     {
         public string Code { get; }
 
-        public ApplicationExceptions(string code)
+        protected ApplicationExceptions()
+        {
+
+        }
+
+        protected ApplicationExceptions(string code)
         {
             Code = code;
         }
 
-        public ApplicationExceptions(string message, params object[] args) 
+        protected ApplicationExceptions(string message, params object[] args) 
             : this(string.Empty, message, args)
         {
 
         }
 
-        public ApplicationExceptions(string code, string message, params object[] args) 
+        protected ApplicationExceptions(string code, string message, params object[] args) 
             : this(null, string.Empty, message, args)
         {
-
+            Code = code;
         }
 
-        public ApplicationExceptions(Exception innerException, string message, params object[] args) 
+        protected ApplicationExceptions(Exception innerException, string message, params object[] args) 
             : this(innerException, string.Empty, message, args)
         {
 
         }
 
-        public ApplicationExceptions(Exception innerException, string code, string message, params object[] args) 
+        protected ApplicationExceptions(Exception innerException, string code, string message, params object[] args) 
             : base(string.Format(message, args), innerException)
         {
             Code = code;

@@ -66,10 +66,14 @@ namespace HomeBudgetCalculator.Infrastructure.Service
 
             var user = await _userRepository.GetAsync(login);
             var hash = _encrypter.GetHash(password, user.Salt);
+
             if (user.Password == hash)
             {
                 return;
             }
+            else
+                throw new ServiceExceptions(ServiceErrorCodes.InvalidCredentials,
+                    $"Invalid Credentials");
         }
 
         public async Task UpdateUserAsync(string login, string password, string email)

@@ -17,6 +17,11 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public Budget Budget { get; protected set; }
 
+        public Expense()
+        {
+
+        }
+
         public Expense(string title, decimal value, DateTime date, Guid budgetId)
         {
             Id = Guid.NewGuid();
@@ -43,7 +48,7 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public void SetValue(decimal value)
         {
-            if (value == decimal.Zero)
+            if (value <= decimal.Zero)
             {
                 throw new DomainExceptions(DomainErrorCodes.InvalidValue, 
                     "Value cannot be empty");

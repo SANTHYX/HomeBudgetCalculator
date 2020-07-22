@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudgetCalculator.API", "HomeBudgetCalculator.API.csproj", "{50B046DE-9030-41AD-8291-946866A08029}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeBudgetCalculator.API", "HomeBudgetCalculator.API.csproj", "{50B046DE-9030-41AD-8291-946866A08029}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudgetCalculator.Core", "..\HomeBudgetCalculator.Core\HomeBudgetCalculator.Core.csproj", "{D5137B7F-E03F-433F-9766-36C60F22BC07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeBudgetCalculator.Core", "..\HomeBudgetCalculator.Core\HomeBudgetCalculator.Core.csproj", "{D5137B7F-E03F-433F-9766-36C60F22BC07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudgetCalculator.Infrastructure", "..\HomeBudgetCalculator.Infrastructure\HomeBudgetCalculator.Infrastructure.csproj", "{770B0276-F5B0-4DEB-89BD-CA340F44FCA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeBudgetCalculator.Infrastructure", "..\HomeBudgetCalculator.Infrastructure\HomeBudgetCalculator.Infrastructure.csproj", "{770B0276-F5B0-4DEB-89BD-CA340F44FCA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeBudgetCalculator.UnitTests", "..\HomeBudgetCalculator.UnitTests\HomeBudgetCalculator.UnitTests.csproj", "{91D32287-FB4A-4FC1-9A3D-D88BE4C9D970}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{770B0276-F5B0-4DEB-89BD-CA340F44FCA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{770B0276-F5B0-4DEB-89BD-CA340F44FCA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{770B0276-F5B0-4DEB-89BD-CA340F44FCA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91D32287-FB4A-4FC1-9A3D-D88BE4C9D970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91D32287-FB4A-4FC1-9A3D-D88BE4C9D970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91D32287-FB4A-4FC1-9A3D-D88BE4C9D970}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91D32287-FB4A-4FC1-9A3D-D88BE4C9D970}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

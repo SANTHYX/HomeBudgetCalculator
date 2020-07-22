@@ -4,6 +4,11 @@ namespace HomeBudgetCalculator.Infrastructure.Exceptions
 {
     public class ServiceExceptions : Core.Exceptions.ApplicationExceptions
     {
+        public ServiceExceptions()
+        {
+
+        }
+        
         public ServiceExceptions(string code) : base(code)
         {
 
