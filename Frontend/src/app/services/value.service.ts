@@ -13,8 +13,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ValueService {
-  incomesList: Array<IncomeDTO>
-  expensesList: Array<ExpenseDTO>
+  incomesList: Array<IncomeDTO> = []
+  expensesList: Array<ExpenseDTO> = []
   totalExpense: number = 0
   totalIncome: number = 0
   constructor(private http: HttpClient) {

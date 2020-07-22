@@ -19,18 +19,25 @@ export class BudgetMainComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = this.userService.getUser(this.tokenService.getUser().sub)
+    this.valueService.expensesList = []
+    this.valueService.incomesList = []
+    this.valueService.totalExpense = 0
+    this.valueService.totalIncome = 0
     this.userService.getUser(this.tokenService.getUser().sub).subscribe(
       value => {
-        this.valueService.expensesList = value.budget.expenses
-          .filter(value1 => {
-            let date = new Date(Date.now())
-            date.setDate(1)
-            return new Date(value1.date) >= date;
-          })
-          .sort((a, b) => {
-            return <any>new Date(a.date) - <any>new Date(b.date);
-          });
-        this.valueService.expensesList.forEach(val => this.valueService.totalExpense += val.value)
+        if(value.budget.expenses){
+          this.valueService.expensesList = value.budget.expenses
+            .filter(value1 => {
+              let date = new Date(Date.now())
+              date.setDate(1)
+              return new Date(value1.date) >= date;
+            })
+            .sort((a, b) => {
+              return <any>new Date(a.date) - <any>new Date(b.date);
+            });
+          this.valueService.expensesList.forEach(val => this.valueService.totalExpense += val.value)
+        }
+
         this.valueService.incomesList = value.budget.incomes
           .filter(value1 => {
             let date = new Date(Date.now())

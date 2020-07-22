@@ -38,6 +38,7 @@ namespace HomeBudgetCalculator.API.Controllers
         }
 
         // POST api/Budgets
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] InitializeBudget command)
         {
