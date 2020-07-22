@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using HomeBudgetCalculator.Infrastructure.Commands.ExpenseCommands;
 using HomeBudgetCalculator.Infrastructure.Handlers.Interfaces;
-using HomeBudgetCalculator.Infrastructure.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
