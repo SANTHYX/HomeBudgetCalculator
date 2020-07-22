@@ -80,8 +80,8 @@ namespace HomeBudgetCalculator.Core.Domains
         {
             if (budgetId == Guid.Empty)
             {
-                throw new DomainExceptions(DomainErrorCodes.InvalidBudgetId, 
-                    "BudgetId cannot be empty if u want to relate entities: Budget <> Expense");
+                throw new DomainExceptions(DomainErrorCodes.InvalidBudgetId,
+                    "BudgetId cannot be empty if u want to relate entities: Budget <> Expens");
             }
 
             BudgetId = budgetId;

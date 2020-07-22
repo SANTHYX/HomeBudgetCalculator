@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeBudgetCalculator.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200720130449_AppDatabase")]
-    partial class AppDatabase
+    [Migration("20200722144811_InitialData")]
+    partial class InitialData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

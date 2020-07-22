@@ -24,7 +24,7 @@ namespace HomeBudgetCalculator.Core.Domains
 
         public DateTime CreatedAt { get; protected set; }
 
-        protected User()
+        public User()
         {
 
         }

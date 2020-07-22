@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HomeBudgetCalculator.Infrastructure.Migrations
 {
-    public partial class AppDatabase : Migration
+    public partial class InitialData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
