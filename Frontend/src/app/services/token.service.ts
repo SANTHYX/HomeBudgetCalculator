@@ -26,6 +26,7 @@ export class TokenService {
   saveUser(user: UserTokenDTO){
     window.sessionStorage.removeItem(userKey)
     window.sessionStorage.setItem(userKey, JSON.stringify(user))
+
   }
 
   getUser(): UserTokenDTO{

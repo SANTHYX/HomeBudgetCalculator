@@ -2,7 +2,7 @@
   <form>
     <div class="form-row">
       <div class="col-sm">
-        <label for="name"></label>
+        <label for="name" hidden="true"></label>
         <input type="text"
                class="form-control"
                id="name"
@@ -11,7 +11,7 @@
                name="name">
       </div>
       <div class="col-sm">
-        <label for="values"></label>
+        <label for="values" hidden="true"></label>
         <input type="text"
                class="form-control"
                id="values"
@@ -19,8 +19,8 @@
                name="values">
       </div>
       <div class="col-sm">
-        <button class="btn btn-success col col-sm-4 mr-2" (click)="addIncomes(details.budget.id)">+</button>
-        <button class="btn btn-danger col col-sm-4" (click)="addExpenses(details.budget.id)">-</button>
+        <button class="btn btn-success col col-sm-4 mr-2" style="background-color: #87C7F3; border-color: #86C6F2" (click)="addIncomes(details.budget.id)" >+</button>
+        <button class="btn btn-danger col col-sm-4" style="background-color: #FFA1B5; border-color: #FeA0B4" (click)="addExpenses(details.budget.id)">-</button>
       </div>
     </div>
   </form>
