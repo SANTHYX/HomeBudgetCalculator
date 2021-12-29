@@ -7,12 +7,13 @@ Simple CRUD SPA writen in Angular with .NET Core 3.1 Web API support. Applicatio
 *  .NET Core 3.1
 *  Angular 8
 *  Node.js(LTS version)
+*  MS SQL Server 2017
 
 ## Used Packages/Libraries
 * AutoMapper
 * Autofac
 * Entity Framework Core
-* MS SQL Server 2017
+
 ## 1. Prepare Environment
 * Install Visual Studio(easy way) or use .NET CLI (harder way)
 * Install Node.js (LTS is best option)
